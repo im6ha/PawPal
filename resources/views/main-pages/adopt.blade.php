@@ -56,6 +56,9 @@
       );
     });
   </script>
+        <footer class="footer">
+      @include('partials.footer')
+    </footer>
 
   <script type="module" src="{{ asset('js/main-pages/adopt.js') }}"></script>
 </body>
