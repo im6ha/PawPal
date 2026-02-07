@@ -5,103 +5,64 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sitter;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\QueryException;
 
 class SitterController extends Controller
 {
-
-    public function getSitters()
-    {
-        try {
-            $sitters = Sitter::with('user')->where('status', 'published')->get();
-        } catch (QueryException $e) {
-
-            $sitters = Sitter::with('user')->get();
-        }
-
-        return response()->json($sitters);
-    }
-
     public function index()
-    {
-        try {
-            $sitters = Sitter::where('status', 'published')->latest()->get();
-        } catch (QueryException $e) {
-            $sitters = Sitter::latest()->get();
-        }
-
-        return view('main-pages.sitters', compact('sitters'));
-    }
-
-
-public function store(Request $request)
 {
-    if (Sitter::where('user_id', Auth::id())->exists()) {
-        return redirect()->route('find-sitters')
-                         ->with('error', 'You are already registered as a sitter!');
-    }
-
-    $request->validate([
-        'wilaya' => 'required|string|max:50',
-        'description' => 'required|string|max:500',
-        'hourlyPay' => 'required|numeric|min:0',
-    ]);
-
-    $user = Auth::user();
-    $status = ($user && ($user->trust_score ?? 0) > 3) ? 'published' : 'pending';
-
-    $payload = [
-        'user_id'            => Auth::id(),
-        'location'           => $request->wilaya, 
-        'bio'                => $request->description,
-        'fee_per_day'        => $request->hourlyPay,    
-        'profile_image_path' => null,
-        'status'             => $status,    
-    ];
-
-    Sitter::create($payload);
-
-    $message = ($status === 'published')
-        ? 'Your sitter profile is published!'
-        : 'Your application is pending review.';
-
-    return redirect()->route('find-sitters')->with('success', $message);
+    return view('main-pages.find-sitters');
 }
-
-
-
-    /**
-     * Show current user's pending sitter applications (requests).
-     */
-    public function myRequests()
+    public function store(Request $request)
     {
-        try {
-            $requests = Sitter::where('user_id', Auth::id())
-                              ->where('status', 'pending')
-                              ->latest()
-                              ->get();
-        } catch (QueryException $e) {
-            // if no status column, show all user's records as "requests"
-            $requests = Sitter::where('user_id', Auth::id())->latest()->get();
+        if (Sitter::where('user_id', Auth::id())->exists()) {
+            return redirect()->route('find-sitters')
+                           ->with('error', 'You are already registered as a sitter!');
         }
 
-        return view('user.sitter-requests', compact('requests'));
+        $request->validate([
+            'wilaya' => 'required|string',
+            'description' => 'required|string|max:500',
+            'hourlyPay' => 'required|numeric|min:0.01',
+        ]);
+
+        $sitter = Sitter::create([
+            'user_id' => Auth::id(),
+            'location' => $request->wilaya,
+            'bio' => $request->description,
+            'fee_per_day' => $request->hourlyPay,
+            'profile_image_path' => null,
+            'status' => Auth::user()->trust_score > 3 ? 'accepted' : 'pending'
+        ]);
+
+        return redirect()->route('find-sitters')->with('success', 'Your sitter application has been submitted!');
     }
 
-    /**
-     * Approve a sitter (set status => published).
-     * Protect this route with admin middleware / policy in routes/web.php.
-     */
-    public function approve(Sitter $sitter)
+    public function getSitters(Request $request)
     {
-        // Protect this route in routes (example: ->middleware('can:approve-sitters') or isAdmin)
-        try {
-            $sitter->update(['status' => 'published']);
-        } catch (QueryException $e) {
-            // If status column doesn't exist, no-op or handle as you prefer
-            return back()->with('error', 'Cannot approve: status column missing in DB.');
+        $query = Sitter::where('status', 'accepted')->with('user');
+        
+        if ($request->has('locations')) {
+            $locations = explode(',', $request->locations);
+            $query->whereIn('location', $locations);
         }
 
-        return back()->with('success', 'Sitter approved.');
+        if ($request->has('min_price')) {
+            $query->where('fee_per_day', '>=', $request->min_price);
+        }
+        if ($request->has('max_price')) {
+            $query->where('fee_per_day', '<=', $request->max_price);
+        }
+
+        return response()->json($query->latest()->get()->map(function ($sitter) {
+            return [
+                'id' => $sitter->id,
+                'user_id' => $sitter->user_id,
+                'name' => $sitter->user->name,
+                'location' => $sitter->wilaya_name,
+                'description' => $sitter->bio,
+                'fee' => $sitter->fee_per_day . ' DA/24h',
+                'avatarUrl' => $sitter->user->profile_image ? asset($sitter->user->profile_image) : null
+            ];
+        }));
     }
 }
