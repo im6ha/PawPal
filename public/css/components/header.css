@@ -1,0 +1,422 @@
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.account-con {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.account-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-icon img.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: 130%;
+  right: 0;
+  display: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  min-width: 180px;
+  z-index: 9999;
+  padding: 5px 0;
+}
+
+.account-dropdown.active {
+  background-color: #0a2435;
+  display: block;
+}
+
+.account-dropdown .account-link,
+.account-dropdown .logout {
+  display: block;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.account-dropdown .account-link:hover,
+.account-dropdown .logout:hover {
+  background-color: #0f425a;
+  color: #ffffff;
+}
+
+header {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: 9999;
+  transition: transform 0.3s ease, visibility 0.3s;
+  will-change: transform;
+  transform: translateY(0);
+}
+
+main {
+  padding-top: 150px;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,   
+    #f0ebe6 40%,  
+    #d8d2cc 100%  
+  );
+  background-attachment: fixed;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,ol {
+  list-style: none;
+}
+
+
+
+.upper-bar {
+  display: grid;
+  grid-template-columns: 80% 1fr;
+background: linear-gradient(90deg, #041c2b, #0a3147);
+  color: white;
+  height: fit-content;
+  text-align: center;
+  padding: 5px;
+}
+
+header div ul {
+  grid-column: 1/2;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+
+header div ul li {
+  margin: 10px;
+  font-size: 15px;
+}
+
+header div ul li:hover {
+  cursor: pointer;
+}
+
+
+.login-con {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  font-weight: bold;
+  background-color: transparent;
+  color: white;
+  padding: 5px 18px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 15px;
+  text-wrap: nowrap;
+}
+
+.login:hover {
+  background-color: #0f425a;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.login:active {
+  transform: scale(0.98);
+  background-color: #071e2b;
+}
+
+.login:focus {
+  outline: none;
+  border-color: #4fc3f7;
+  box-shadow: 0 0 6px rgba(79, 195, 247, 0.6);
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  background: linear-gradient(90deg, #0a3147, #144b6b);
+  color: white;
+  height: 90px;
+  align-items: center;
+}
+
+.tag {
+  grid-column: 1/2;
+}
+
+nav ul {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav ul li {
+  text-align: center;
+
+  transition: all 0.3s ease;
+}
+
+.logo-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  height: 55%;
+  width: 70%;
+}
+
+.stack {
+  display: none;
+  transition: all 0.2s linear;
+}
+
+.stack:hover {
+  transform: scale(1.05);
+}
+
+
+.active-page {
+  font-weight: bold;
+  
+}
+nav ul li a.active-page::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 53px; 
+  width: 100%;        
+  height: 2px;    
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+
+
+@media (max-width: 768px) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  nav {
+    order: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+    height: 70px;
+    position: relative; 
+  }
+  
+  .upper-bar {
+    order: 2;
+    display: grid; 
+    grid-template-columns: 1fr;
+    background-color: #093347;
+    color: white;
+    height: auto;
+    
+  }
+
+  .upper-bar ul {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .upper-bar ul li {
+    font-size: 14px;
+  }
+
+  .login-con {
+    display: flex;
+    justify-content: center;
+  }
+
+  .login {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .stack {
+    display: block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #0f425a;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    max-height: 0;            
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  nav ul.show {
+    max-height: 500px;       
+    padding: 1rem 0;
+  }
+
+  nav ul li {
+    margin-left: 5vw;
+    color: white;
+    padding: 0.5rem 0;
+  }
+
+  .logo {
+    height: 45px;
+    width: 100px;
+  }
+
+  main {
+    padding-top: 140px;
+  }
+
+  nav ul li a.active-page::after {
+    display: none;
+  }
+}
+
+
+
+@media (max-width: 900px) {
+  nav ul li {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 800px) {
+  nav ul li {
+    font-size: 16px;
+  }
+}
+
+
+.account-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a3147;
+    position: absolute;
+    right: 3vw;
+}
+
+.account-icon:hover {
+    background-color: white;
+    transform: scale(1.1);
+}
+
+.account-icon svg path {
+    fill: white;
+}
+
+.account-icon:hover svg path {
+    fill: #0a3147;
+}
+
+
+
+
+
+.account-dropdown {
+    position: absolute;
+    background: white;
+    color: #333;
+    width: 150px;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: none;
+    flex-direction: column;
+    z-index: 99999;
+}
+
+.account-dropdown.active {
+    display: flex;
+}
+
+.account-dropdown a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.account-dropdown a:hover {
+    background: #f2f2f2;
+}
+
+
+@media (max-width: 768px) {
+    .account-icon {
+        right: 8vw;
+    }
+
+    .account-dropdown{
+        left: auto !important;
+        right: 0vw;
+    }
+}
+
+

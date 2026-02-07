@@ -1,0 +1,387 @@
+body {
+  background-image: linear-gradient(black, #093347);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form_container{
+  width: 100%;
+  justify-content: center;
+}
+.the_form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;      
+  background-color: white;
+  padding: 5% 5%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  width: 40%;
+  min-height: 80%;
+  height: auto;
+  box-sizing: border-box;
+  margin-top: 0.5%;
+}
+
+.form_label {
+  font-size: 15px;
+  color: #0d47a1;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #093347;
+  border-radius: 5px;
+  background-color: #e3f2fd;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+button {
+  align-self: center;
+  background-color: #0d47a1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 85%;
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+.check{
+  width:100%;
+  font-style: italic;
+  text-align: left;
+  color: #e63946;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  margin: 4px 0 8px 5px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+img{
+  margin-top: 0.75%;
+  width: 15%;
+  margin-left: 0.5%;
+}
+
+.password_container {
+  position: relative;
+  display: inline-block;
+  width:100%;
+}
+
+.password_container input {
+  padding-right: 40px;
+  font-size: 1rem;
+}
+
+.showpassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+}
+
+.showpassword svg {
+    height: 25px;
+    width: 25px;
+}
+
+
+
+@media (max-width: 768px) {
+  .the_form {
+      width: 90%;
+      padding: 8% 6%;
+      margin: 20px auto;
+  }
+
+  input {
+      font-size: 1rem;
+      padding: 12px;
+  }
+  button {
+      font-size: 1.2rem;
+      padding: 12px;
+  }
+  h2 {
+      font-size: 1.8rem;
+      text-align: center;
+  }
+
+  h5 {
+      font-size: 1rem;
+      text-align: center;
+  }
+  img {
+      width: 30%;
+      margin: 20px auto;
+      display: block;
+  }
+
+  .showpassword {
+      font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .the_form {
+      width: 95%;
+      padding: 10% 5%;
+  }
+  input, button {
+      font-size: 0.95rem;
+  }
+
+  h2 {
+      font-size: 1.5rem;
+  }
+}
+
+
+
+/*phone verification*/
+
+.verify-logo {
+    margin-top: 1.5%;
+    width: 12%;
+    margin-left: 1.2%;
+    transition: transform 0.3s ease;
+}
+
+.verify-logo:hover {
+    transform: scale(1.05);
+}
+
+.verify-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 20px;
+}
+
+.verify-form {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    position: relative;
+}
+
+
+.verify-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #0d47a1;
+    margin: 0 0 12px;
+}
+
+.verify-subtitle {
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 24px;
+}
+
+.verify-subtitle strong {
+    color: #0d47a1;
+    font-weight: 600;
+}
+
+.modal {
+     position:fixed;
+     top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.5);
+    display:flex;
+    justify-content:center;
+    align-items:center; }
+.modal-content {
+     background:white;
+      padding:2rem; 
+      border-radius:8px; 
+      text-align:center; 
+    }
+
+.otp-input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 24px 0 16px;
+}
+
+.otp-digit {
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border: 2px solid #cce5ff;
+    border-radius: 10px;
+    outline: none;
+    background-color: #f8fbff;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.otp-digit:focus {
+    border-color: #42a5f5;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(66, 165, 245, 0.2);
+}
+
+.otp-digit::placeholder {
+    color: #cbd5e0;
+}
+
+.otp-error {
+    min-height: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: #e63946;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 8px 0 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.verify-btn {
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.25rem;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    margin: 10px 0 20px;
+    transition: background 0.3s;
+}
+
+.verify-btn:hover:not(:disabled) {
+    background-color: #1565c0;
+}
+
+.verify-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.verify-footer {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: #0d47a1;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    margin-left: 6px;
+    text-decoration: underline;
+    padding: 0;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.resend-btn:hover:not(:disabled) {
+    background-color: white;    
+    transform: scale(1.02);
+    
+}
+
+.resend-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.back-to-login {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.back-link {
+    color: #777;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.back-link:hover {
+    color: #0d47a1;
+}
+
+@media (max-width: 576px) {
+    .verify-logo {
+        width: 25%;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .verify-form {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+
+    .otp-input-group {
+        gap: 6px;
+    }
+
+    .otp-digit {
+        width: 42px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+
+    .verify-title {
+        font-size: 1.6rem;
+    }
+
+    .verify-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .otp-digit {
+        width: 38px;
+        height: 48px;
+        font-size: 1.4rem;
+    }
+}

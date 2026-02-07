@@ -1,0 +1,126 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #093347;
+  background: #f8fafa;
+  display: flex;
+  flex-direction: column;
+}
+
+.guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  width: 100%;
+  padding: 30px;
+  text-align: left;
+  margin: 120px auto 40px;
+  padding-bottom: 100px;
+}
+
+.guide img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+h2 {
+  color: #0f425a;
+  margin: 15px 0 5px;
+  font-size: 1.1rem;
+}
+
+.list {
+  margin: 0 0 15px 20px;
+}
+
+.element {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+main#pet-care-home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+main#pet-care-home h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #093347;
+  margin-bottom: 20px;
+}
+
+main#pet-care-home .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+main#pet-care-home .animal {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  height: 230px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  transition: transform .2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+main#pet-care-home .animal:hover {
+  transform: translateY(-6px);
+}
+
+main#pet-care-home .animal p {
+  margin-bottom: 10px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px #093347;
+}
+
+main#pet-care-home .cat { background-image: url(/media/images/cat.jpg); }
+main#pet-care-home .dog { background-image: url(/media/images/dog.jpg); }
+main#pet-care-home .hamster { background-image: url(/media/images/hamster.jpg); }
+main#pet-care-home .bird { background-image: url(/media/images/bird.jpg); background-position: top; }
+main#pet-care-home .rabbit { background-image: url(/media/images/rabbit.jpg); }
+main#pet-care-home .fish { background-image: url(/media/images/fish.jpg); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  main#pet-care-home .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  main#pet-care-home .grid {
+    grid-template-columns: 1fr;
+  }
+}
