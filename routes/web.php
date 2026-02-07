@@ -17,10 +17,12 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/adopt', [AdoptionController::class, 'index'])->name('adopt');
-Route::get('/find-sitters', fn() => view('main-pages.find-sitters'))->name('find-sitters');
+Route::get('/find-sitters', [SitterController::class, 'index'])->name('find-sitters');
 Route::get('/market', fn() => view('main-pages.market'))->name('market');
 Route::get('/pet-care-guide', fn() => view('main-pages.pet-care-guide'))->name('pet-care-guide');
 
+
+    
 Route::prefix('guide')->group(function () {
     Route::get('/bird', fn() => view('pet_care_guides.bird'))->name('bird');
     Route::get('/cat', fn() => view('pet_care_guides.cat'))->name('cat');
@@ -78,9 +80,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/sitters-data', [SitterController::class, 'getSitters']);
 Route::get('/api/products', [ProductController::class, 'index']);
 
-    Route::get('/lost-pets', [LostPetController::class, 'index'])->name('lost-pets');
-    Route::get('/api/lost-pets', [LostPetController::class, 'apiIndex']);
-
+Route::get('/lost-pets', [LostPetController::class, 'index'])->name('lost-pets');
+Route::get('/api/lost-pets', [LostPetController::class, 'apiIndex']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/posts/{type}/{status}', [AdminController::class, 'getPosts']);
@@ -112,3 +113,5 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::post('/api/reports', [ReportController::class, 'store'])->middleware('auth');
+Route::get('/api/adoptions', [AdoptionController::class, 'apiIndex']);
+Route::get('/api/sitters', [SitterController::class, 'getSitters']);
