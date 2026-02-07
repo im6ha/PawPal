@@ -60,10 +60,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     
-    Route::get('/lost-pets', [LostPetController::class, 'index'])->name('lost-pets');
     Route::get('/report-lost', [LostPetController::class, 'create'])->name('report-lost');
     Route::post('/report-lost', [LostPetController::class, 'store'])->name('report-lost.store');
-    Route::get('/api/lost-pets', [LostPetController::class, 'apiIndex']);
 
 
 
@@ -80,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/sitters-data', [SitterController::class, 'getSitters']);
 Route::get('/api/products', [ProductController::class, 'index']);
 
+    Route::get('/lost-pets', [LostPetController::class, 'index'])->name('lost-pets');
+    Route::get('/api/lost-pets', [LostPetController::class, 'apiIndex']);
 
 
 Route::prefix('admin')->group(function () {
